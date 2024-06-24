@@ -3,6 +3,8 @@ package Main;
 import Util.InterfaceUsuario;
 import Model.Financiamento;
 
+import java.util.ArrayList;
+
 /*
     .................................................................................
     📂 | ATIVIDADE SOMATIVA | Sistema de Simulação de Financiamentos Imobiliários.
@@ -17,13 +19,16 @@ public class Main {
     public static void main(String[] args) {
 
         InterfaceUsuario interfaceUsuario = new InterfaceUsuario();
-        double taxaJuros = interfaceUsuario.solicitarTaxaJuros();
-        int prazoFinanciamentoAnos = interfaceUsuario.solicitarPrazoFinanciamento();
-        double valorImovel = interfaceUsuario.solicitarValorImovel();
+        ArrayList<Financiamento> colecao= new ArrayList<Financiamento>();
 
-        Financiamento solicitarFinanciamento = new Financiamento(valorImovel, prazoFinanciamentoAnos, taxaJuros);
+        for(int i = 0; i<4; i++){
+            double taxaJuros = interfaceUsuario.solicitarTaxaJuros();
+            int prazoFinanciamentoAnos = interfaceUsuario.solicitarPrazoFinanciamento();
+            double valorImovel = interfaceUsuario.solicitarValorImovel();
+            colecao.add(new Financiamento(valorImovel, prazoFinanciamentoAnos, taxaJuros));
+        }
 
         //Imprimir dados do financiamento
-        solicitarFinanciamento.imprimirDadosFinanciamento();
+        colecao.forEach(Financiamento::imprimirDadosFinanciamento);
     }
 }
